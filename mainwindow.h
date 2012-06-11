@@ -25,7 +25,6 @@ public slots:
     void background_file_open();
     void closedapp_file_open();
     void imagelist_file_open();
-    //void
 
     void run_experiment();
     
