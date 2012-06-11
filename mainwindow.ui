@@ -44,6 +44,7 @@
     <property name="title">
      <string>Run</string>
     </property>
+    <addaction name="actionRun_Experiment"/>
    </widget>
    <widget class="QMenu" name="menuAbout">
     <property name="title">
@@ -78,6 +79,11 @@
   <action name="actionExport_Data">
    <property name="text">
     <string>Export Data</string>
+   </property>
+  </action>
+  <action name="actionRun_Experiment">
+   <property name="text">
+    <string>Run Experiment</string>
    </property>
   </action>
  </widget>
