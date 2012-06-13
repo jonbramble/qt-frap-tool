@@ -22,8 +22,17 @@ void FrapModel::setClosed(QString closed) {
 
 void FrapModel::doSelection(){
     experiment->doselection();
-    //experiment->processdata();
-    //experiment->print_data();
+   /* while(!experiment->selected()){
+        wait();
+    }*/
+
+    experiment->processdata(); // move somewhere else
+    experiment->print_data();
+
+    double dif_const = experiment->dif_const();
+    QString result = QString::number(dif_const,'g',3);
+    emit update_result(result);
+
 }
 
 void FrapModel::setImageList(QStringList image_string_list){

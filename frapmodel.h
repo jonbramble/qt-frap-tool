@@ -19,6 +19,7 @@ public:
     ~FrapModel();
     
 signals:
+    void update_result(QString diffusion);
     
 public slots:
     void setPrima(QString prima);

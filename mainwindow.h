@@ -26,6 +26,7 @@ public slots:
     void closedapp_file_open();
     void imagelist_file_open();
     void run_experiment();
+    void show_result(QString diffusion);
 
 signals:
     void primaset(QString prima);

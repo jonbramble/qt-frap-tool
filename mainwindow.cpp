@@ -12,6 +12,11 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionImage_Stack, SIGNAL(triggered()), this, SLOT(imagelist_file_open()));
     connect(ui->actionRun_Experiment, SIGNAL(triggered()), this, SLOT(run_experiment()));
 
+
+    set_background = false;
+    set_closed = false;
+    set_image_list = false;
+
     frapmodel = new FrapModel(0);
     ui->tableView->setModel( frapmodel );
 
@@ -19,6 +24,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this,SIGNAL(closedset(QString)),frapmodel,SLOT(setClosed(QString)));
     connect(this,SIGNAL(doselection()),frapmodel,SLOT(doSelection()));
     connect(this,SIGNAL(imagelistset(QStringList)),frapmodel,SLOT(setImageList(QStringList)));
+
+    connect(frapmodel,SIGNAL(update_result(QString)), this, SLOT(show_result(QString)));
 
     starting_dir = "/home/jon/Programming/C/frap-tool-old";
 }
@@ -28,10 +35,14 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::show_result(QString diffusion){
+    ui->label_result->setText(diffusion);
+}
+
 void MainWindow::run_experiment()
 {
 
-     if(set_background && set_closed && set_image_list)
+    if(set_background && set_closed && set_image_list)
     {
         emit doselection();
 
