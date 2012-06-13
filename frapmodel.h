@@ -16,7 +16,7 @@ public:
     int columnCount(const QModelIndex &parent) const;
     QVariant data(const QModelIndex &index, int role) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
-
+    ~FrapModel();
     
 signals:
     
@@ -28,8 +28,9 @@ public slots:
 
 private:
     FrapTool::Frap *experiment;
+    int rows;
 
-    static std::string qStringToSTLString(const QString& qstring);
+    static std::string qStringToSTLString(const QString& qstring){ return qstring.toStdString(); };
     
 };
 

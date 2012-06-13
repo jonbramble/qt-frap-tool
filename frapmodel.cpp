@@ -4,11 +4,12 @@ FrapModel::FrapModel(QObject *parent) :
     QAbstractTableModel(parent)
 {
     experiment = new FrapTool::Frap();
+    rows = 0;
 }
 
-static std::string qStringToSTLString(const QString& qstring)
+FrapModel::~FrapModel()
 {
-   return qstring.toStdString();
+    delete experiment;
 }
 
 void FrapModel::setPrima(QString prima) {
@@ -21,26 +22,27 @@ void FrapModel::setClosed(QString closed) {
 
 void FrapModel::doSelection(){
     experiment->doselection();
+    //experiment->processdata();
+    //experiment->print_data();
 }
 
 void FrapModel::setImageList(QStringList image_string_list){
     std::vector<std::string> ifiles;
+    rows = image_string_list.size();
     ifiles.reserve(image_string_list.size()); // reserve vector space
-    std::transform(image_string_list.begin(),image_string_list.end(),std::back_inserter(ifiles),&qStringToSTLString);
+    std::transform(image_string_list.begin(),image_string_list.end(),std::back_inserter(ifiles),&FrapModel::qStringToSTLString);
     experiment->setimagenames(ifiles);
 }
 
 int FrapModel::rowCount(const QModelIndex & /*parent*/) const
  {
-    return 2;
+    return rows;
  }
 
  int FrapModel::columnCount(const QModelIndex & /*parent*/) const
  {
      return 5;
  }
-
-
 
  QVariant FrapModel::headerData(int section, Qt::Orientation orientation, int role) const
  {
