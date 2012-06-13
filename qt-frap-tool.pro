@@ -13,8 +13,10 @@ INCLUDEPATH += /usr/local/include/fraptool-1.0
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    frapmodel.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    frapmodel.h
 
 FORMS    += mainwindow.ui
