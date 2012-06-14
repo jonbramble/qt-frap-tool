@@ -1,7 +1,9 @@
 #ifndef FRAPMODEL_H
 #define FRAPMODEL_H
 
+#include <QDebug>
 #include <QAbstractTableModel>
+#include <QBrush>
 #include <QFontDatabase>
 #include <QTextCodec>
 #include <QStringList>
@@ -14,6 +16,9 @@ public:
     explicit FrapModel(QObject *parent = 0);
     int rowCount(const QModelIndex &parent) const;
     int columnCount(const QModelIndex &parent) const;
+
+    //bool insertRows(int row, int count, const QModelIndex &parent);
+
     QVariant data(const QModelIndex &index, int role) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
     ~FrapModel();

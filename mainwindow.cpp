@@ -12,19 +12,20 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionImage_Stack, SIGNAL(triggered()), this, SLOT(imagelist_file_open()));
     connect(ui->actionRun_Experiment, SIGNAL(triggered()), this, SLOT(run_experiment()));
 
-
     set_background = false;
     set_closed = false;
     set_image_list = false;
 
     frapmodel = new FrapModel(0);
     ui->tableView->setModel( frapmodel );
+    ui->tableView->show();
 
     connect(this,SIGNAL(primaset(QString)),frapmodel,SLOT(setPrima(QString)));
     connect(this,SIGNAL(closedset(QString)),frapmodel,SLOT(setClosed(QString)));
     connect(this,SIGNAL(doselection()),frapmodel,SLOT(doSelection()));
     connect(this,SIGNAL(imagelistset(QStringList)),frapmodel,SLOT(setImageList(QStringList)));
 
+    connect(frapmodel,SIGNAL(dataChanged(QModelIndex,QModelIndex)), ui->tableView,SLOT(dataChanged(QModelIndex,QModelIndex)));
     connect(frapmodel,SIGNAL(update_result(QString)), this, SLOT(show_result(QString)));
 
     starting_dir = "/home/jon/Programming/C/frap-tool-old";
@@ -45,7 +46,7 @@ void MainWindow::run_experiment()
     if(set_background && set_closed && set_image_list)
     {
         emit doselection();
-
+        qDebug() << QString("called table show");
     }
     else {
         QMessageBox::warning(this,

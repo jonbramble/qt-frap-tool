@@ -4,7 +4,6 @@ FrapModel::FrapModel(QObject *parent) :
     QAbstractTableModel(parent)
 {
     experiment = new FrapTool::Frap();
-    rows = 0;
 }
 
 FrapModel::~FrapModel()
@@ -22,10 +21,9 @@ void FrapModel::setClosed(QString closed) {
 
 void FrapModel::doSelection(){
     experiment->doselection();
-   /* while(!experiment->selected()){
+    /*while(!experiment->selected()){
         wait();
     }*/
-
     experiment->processdata(); // move somewhere else
     experiment->print_data();
 
@@ -33,6 +31,9 @@ void FrapModel::doSelection(){
     QString result = QString::number(dif_const,'g',3);
     emit update_result(result);
 
+    QModelIndex topLeft= createIndex(0,0);
+    QModelIndex bottomRight= createIndex(4,4);
+    emit dataChanged(topLeft,bottomRight);
 }
 
 void FrapModel::setImageList(QStringList image_string_list){
@@ -43,9 +44,18 @@ void FrapModel::setImageList(QStringList image_string_list){
     experiment->setimagenames(ifiles);
 }
 
-int FrapModel::rowCount(const QModelIndex & /*parent*/) const
+/*bool FrapModel::insertRows(int row, int count, const QModelIndex &parent)
+{
+    Q_UNUSED(row);
+    Q_UNUSED(count);
+    beginInsertRows(parent,0,0);
+    endInsertRows();
+    return true;
+}*/
+
+ int FrapModel::rowCount(const QModelIndex & parent) const
  {
-    return rows;
+    return 20;
  }
 
  int FrapModel::columnCount(const QModelIndex & /*parent*/) const
@@ -100,11 +110,6 @@ int FrapModel::rowCount(const QModelIndex & /*parent*/) const
 
  QVariant FrapModel::data(const QModelIndex &index, int role) const
  {
-     if (role == Qt::DisplayRole)
-     {
-        return QString("Row%1, Column%2")
-                    .arg(index.row() + 1)
-                    .arg(index.column() +1);
-     }
+
      return QVariant();
  }
