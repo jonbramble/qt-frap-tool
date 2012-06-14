@@ -17,8 +17,6 @@ MainWindow::MainWindow(QWidget *parent) :
     set_image_list = false;
 
     frapmodel = new FrapModel(0);
-    ui->tableView->setModel( frapmodel );
-    ui->tableView->show();
 
     connect(this,SIGNAL(primaset(QString)),frapmodel,SLOT(setPrima(QString)));
     connect(this,SIGNAL(closedset(QString)),frapmodel,SLOT(setClosed(QString)));
@@ -47,6 +45,8 @@ void MainWindow::run_experiment()
     {
         emit doselection();
         qDebug() << QString("called table show");
+        ui->tableView->setModel( frapmodel );
+        ui->tableView->show();
     }
     else {
         QMessageBox::warning(this,

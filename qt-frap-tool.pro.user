@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by Qt Creator 2.4.1, 2012-06-14T17:39:54. -->
+<!-- Written by Qt Creator 2.4.1, 2012-06-14T22:13:40. -->
 <qtcreator>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -101,7 +101,7 @@
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4BuildConfiguration</value>
     <value type="int" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildConfiguration">0</value>
-    <value type="QString" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildDirectory">/home/DS/phyjpb/Programming/C/qt-frap-tool-build-desktop-Qt_4_8_1_in_PATH__System__Release</value>
+    <value type="QString" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildDirectory">/home/jon/Programming/C/qt-frap-tool-build-desktop-Qt_4_8_1_in_PATH__System__Release</value>
     <value type="int" key="Qt4ProjectManager.Qt4BuildConfiguration.QtVersionId">1</value>
     <value type="bool" key="Qt4ProjectManager.Qt4BuildConfiguration.UseShadowBuild">true</value>
    </valuemap>
@@ -151,7 +151,7 @@
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4BuildConfiguration</value>
     <value type="int" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildConfiguration">2</value>
-    <value type="QString" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildDirectory">/home/DS/phyjpb/Programming/C/qt-frap-tool-build-desktop-Qt_4_8_1_in_PATH__System__Debug</value>
+    <value type="QString" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildDirectory">/home/jon/Programming/C/qt-frap-tool-build-desktop-Qt_4_8_1_in_PATH__System__Debug</value>
     <value type="int" key="Qt4ProjectManager.Qt4BuildConfiguration.QtVersionId">1</value>
     <value type="bool" key="Qt4ProjectManager.Qt4BuildConfiguration.UseShadowBuild">true</value>
    </valuemap>
@@ -256,7 +256,7 @@
  </data>
  <data>
   <variable>ProjectExplorer.Project.Updater.EnvironmentId</variable>
-  <value type="QString">{973957c6-bafc-4d27-9e1b-d91fb6b68c74}</value>
+  <value type="QString">{039551df-d4f3-45c0-a2ec-66c7eda81a9e}</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.Updater.FileVersion</variable>

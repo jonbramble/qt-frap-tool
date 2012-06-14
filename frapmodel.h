@@ -8,6 +8,7 @@
 #include <QTextCodec>
 #include <QStringList>
 #include <fraptool/frap.h>
+#include <fraptool/frapimage.h>
 
 class FrapModel : public QAbstractTableModel
 {
@@ -34,9 +35,11 @@ public slots:
 
 private:
     FrapTool::Frap *experiment;
-    int rows;
+    std::vector<FrapTool::result> results;
 
+    int rows;
     static std::string qStringToSTLString(const QString& qstring){ return qstring.toStdString(); };
+
     
 };
 
