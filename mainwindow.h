@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QImageReader>
+#include <QGraphicsPixmapItem>
 
 #include <iostream>
 #include "frapmodel.h"
@@ -27,6 +29,7 @@ public slots:
     void imagelist_file_open();
     void run_experiment();
     void show_result(QString diffusion);
+    void linear_fit_image_show();
 
 signals:
     void primaset(QString prima);
@@ -46,6 +49,8 @@ private:
     FrapModel *frapmodel;
 
     QString starting_dir;
+    QGraphicsScene* scene;
+    QGraphicsPixmapItem* item;
 };
 
 #endif // MAINWINDOW_H

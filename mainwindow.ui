@@ -6,29 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>633</width>
-    <height>406</height>
+    <width>760</width>
+    <height>639</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>FrapTool</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QTableView" name="tableView">
-    <property name="geometry">
-     <rect>
-      <x>5</x>
-      <y>10</y>
-      <width>621</width>
-      <height>291</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>310</y>
+      <y>560</y>
       <width>131</width>
       <height>17</height>
      </rect>
@@ -41,7 +31,7 @@
     <property name="geometry">
      <rect>
       <x>140</x>
-      <y>310</y>
+      <y>560</y>
       <width>66</width>
       <height>17</height>
      </rect>
@@ -50,13 +40,56 @@
      <string/>
     </property>
    </widget>
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>12</x>
+      <y>99</y>
+      <width>731</width>
+      <height>441</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tabResults">
+     <attribute name="title">
+      <string>Results</string>
+     </attribute>
+     <widget class="QTableView" name="tableView">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>711</width>
+        <height>391</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tabImage">
+     <attribute name="title">
+      <string>Linear Fit</string>
+     </attribute>
+     <widget class="QGraphicsView" name="linearfitimage">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>711</width>
+        <height>391</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>633</width>
+     <width>760</width>
      <height>25</height>
     </rect>
    </property>
@@ -82,6 +115,7 @@
      <string>Run</string>
     </property>
     <addaction name="actionRun_Experiment"/>
+    <addaction name="actionShow_Graph"/>
    </widget>
    <widget class="QMenu" name="menuAbout">
     <property name="title">
@@ -121,6 +155,11 @@
   <action name="actionRun_Experiment">
    <property name="text">
     <string>Run Experiment</string>
+   </property>
+  </action>
+  <action name="actionShow_Graph">
+   <property name="text">
+    <string>Show Graph</string>
    </property>
   </action>
  </widget>

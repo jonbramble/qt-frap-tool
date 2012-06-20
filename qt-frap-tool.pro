@@ -8,7 +8,7 @@ QT       += core gui
 
 TARGET = qt-frap-tool
 TEMPLATE = app
-LIBS += -L/usr/local/lib -lfraptool-1.0 -lplplotcxxd -lltdl -ldl -lcsirocsa -lqhull -lqsastime -lfreetype -L/usr/X11R6/lib -lpthread -lX11 -ltiff -lboost_thread-mt -lgsl -lgslcblas
+LIBS += -L/usr/local/lib `pkg-config fraptool-1.0 --libs`
 INCLUDEPATH += /usr/local/include/fraptool-1.0
 
 

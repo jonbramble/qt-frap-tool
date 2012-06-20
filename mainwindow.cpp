@@ -11,12 +11,17 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionClosed_Aperature, SIGNAL(triggered()), this, SLOT(closedapp_file_open()));
     connect(ui->actionImage_Stack, SIGNAL(triggered()), this, SLOT(imagelist_file_open()));
     connect(ui->actionRun_Experiment, SIGNAL(triggered()), this, SLOT(run_experiment()));
+    connect(ui->actionShow_Graph, SIGNAL(triggered()),this,SLOT(linear_fit_image_show()));
 
     set_background = false;
     set_closed = false;
     set_image_list = false;
 
     frapmodel = new FrapModel(0);
+
+    //QList<QByteArray> list;
+    //list = QImageReader::supportedImageFormats ();
+    //qDebug() << list;
 
     connect(this,SIGNAL(primaset(QString)),frapmodel,SLOT(setPrima(QString)));
     connect(this,SIGNAL(closedset(QString)),frapmodel,SLOT(setClosed(QString)));
@@ -26,16 +31,43 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(frapmodel,SIGNAL(dataChanged(QModelIndex,QModelIndex)), ui->tableView,SLOT(dataChanged(QModelIndex,QModelIndex)));
     connect(frapmodel,SIGNAL(update_result(QString)), this, SLOT(show_result(QString)));
 
+    ui->tabWidget->setCurrentIndex(0);
+
+    //ui->linearfitimage->
+
     starting_dir = "/home/jon/Programming/C/frap-tool-old";
 }
 
 MainWindow::~MainWindow()
 {
+    delete scene;
+    delete item;
+    delete frapmodel;
     delete ui;
+
 }
 
 void MainWindow::show_result(QString diffusion){
     ui->label_result->setText(diffusion);
+}
+
+void MainWindow::linear_fit_image_show(){
+    QString fileName = QFileDialog::getOpenFileName(this,"Open Image File",QDir::currentPath());
+        if(!fileName.isEmpty())
+        {
+            QImage image(fileName);
+            if(image.isNull())
+            {
+                QMessageBox::information(this,"Image Viewer","Error Displaying image");
+                return;
+            }
+
+            scene = new QGraphicsScene();
+            item = new QGraphicsPixmapItem(QPixmap::fromImage(image));
+            scene->addItem(item);
+            ui->linearfitimage->setScene(scene);
+            ui->linearfitimage->show();
+        }
 }
 
 void MainWindow::run_experiment()
@@ -79,6 +111,7 @@ void MainWindow::background_file_open()
         QStringList filenames = dialog.selectedFiles();
         background_file_name = filenames.at(0);
         set_background = true;
+        starting_dir = QDir::currentPath();
         emit primaset(background_file_name);
     }
     else
@@ -96,7 +129,9 @@ void  MainWindow::closedapp_file_open(){
         QStringList filenames = dialog.selectedFiles();
         closedapp_file_name = filenames.at(0);
         set_closed = true;
+        starting_dir = QDir::currentPath();
         emit closedset(closedapp_file_name);
+
     }
     else
     {
@@ -112,7 +147,7 @@ void MainWindow::imagelist_file_open(){
         if (dialog.exec()) {
             image_string_list = dialog.selectedFiles();
             set_image_list = true;
-
+            starting_dir = QDir::currentPath();
             emit imagelistset(image_string_list);
 
         }
