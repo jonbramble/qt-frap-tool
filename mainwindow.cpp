@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionClosed_Aperature, SIGNAL(triggered()), this, SLOT(closedapp_file_open()));
     connect(ui->actionImage_Stack, SIGNAL(triggered()), this, SLOT(imagelist_file_open()));
     connect(ui->actionRun_Experiment, SIGNAL(triggered()), this, SLOT(run_experiment()));
-    connect(ui->actionShow_Graph, SIGNAL(triggered()),this,SLOT(linear_fit_image_show()));
+
 
     set_background = false;
     set_closed = false;
@@ -28,20 +28,19 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this,SIGNAL(doselection()),frapmodel,SLOT(doSelection()));
     connect(this,SIGNAL(imagelistset(QStringList)),frapmodel,SLOT(setImageList(QStringList)));
 
-    connect(frapmodel,SIGNAL(dataChanged(QModelIndex,QModelIndex)), ui->tableView,SLOT(dataChanged(QModelIndex,QModelIndex)));
+    connect(ui->actionShow_Graph, SIGNAL(triggered()),frapmodel, SLOT(prepareLinearFit()));
+
+    //connect(frapmodel,SIGNAL(dataChanged(QModelIndex,QModelIndex)), ui->tableView,SLOT(dataChanged(QModelIndex,QModelIndex)));
     connect(frapmodel,SIGNAL(update_result(QString)), this, SLOT(show_result(QString)));
 
+    connect(frapmodel,SIGNAL(plotLinearFit(int,QVector<double>&,QVector<double>&,QVector<double>&,double,double)), ui->pl_widget, SLOT(plotLinearFit(int,QVector<double>&,QVector<double>&,QVector<double>&,double,double)));
+
     ui->tabWidget->setCurrentIndex(0);
-
-    //ui->linearfitimage->
-
     starting_dir = "/home/jon/Programming/C/frap-tool-old";
 }
 
 MainWindow::~MainWindow()
 {
-    delete scene;
-    delete item;
     delete frapmodel;
     delete ui;
 
@@ -52,22 +51,7 @@ void MainWindow::show_result(QString diffusion){
 }
 
 void MainWindow::linear_fit_image_show(){
-    QString fileName = QFileDialog::getOpenFileName(this,"Open Image File",QDir::currentPath());
-        if(!fileName.isEmpty())
-        {
-            QImage image(fileName);
-            if(image.isNull())
-            {
-                QMessageBox::information(this,"Image Viewer","Error Displaying image");
-                return;
-            }
 
-            scene = new QGraphicsScene();
-            item = new QGraphicsPixmapItem(QPixmap::fromImage(image));
-            scene->addItem(item);
-            ui->linearfitimage->setScene(scene);
-            ui->linearfitimage->show();
-        }
 }
 
 void MainWindow::run_experiment()

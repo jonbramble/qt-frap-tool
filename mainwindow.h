@@ -49,8 +49,6 @@ private:
     FrapModel *frapmodel;
 
     QString starting_dir;
-    QGraphicsScene* scene;
-    QGraphicsPixmapItem* item;
 };
 
 #endif // MAINWINDOW_H

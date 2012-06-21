@@ -26,16 +26,19 @@ public:
     
 signals:
     void update_result(QString diffusion);
+    void plotLinearFit(int size, QVector<double> &xp,QVector<double> &yp,QVector<double> &yp_err, double m, double c);
     
 public slots:
     void setPrima(QString prima);
     void setClosed(QString closed);
     void doSelection();
     void setImageList(QStringList image_string_list);
+    void prepareLinearFit();
 
 private:
     FrapTool::Frap *experiment;
     std::vector<FrapTool::result> results;
+    std::vector<FrapTool::result>::iterator results_iterator;
 
     int rows;
     static std::string qStringToSTLString(const QString& qstring){ return qstring.toStdString(); };

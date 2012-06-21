@@ -8,15 +8,23 @@ QT       += core gui
 
 TARGET = qt-frap-tool
 TEMPLATE = app
-LIBS += -L/usr/local/lib `pkg-config fraptool-1.0 --libs`
+
+unix {
+    CONFIG += link_pkgconfig
+    PKGCONFIG += fraptool-1.0 plplotd-qt
+}
+
 INCLUDEPATH += /usr/local/include/fraptool-1.0
 
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    frapmodel.cpp
+    frapmodel.cpp \
+    plplotwidget.cpp
 
 HEADERS  += mainwindow.h \
-    frapmodel.h
+    frapmodel.h \
+    plplotwidget.h \
+    qt.h
 
 FORMS    += mainwindow.ui

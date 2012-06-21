@@ -50,7 +50,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tabResults">
      <attribute name="title">
@@ -71,11 +71,11 @@
      <attribute name="title">
       <string>Linear Fit</string>
      </attribute>
-     <widget class="QGraphicsView" name="linearfitimage">
+     <widget class="PlPlotWidget" name="pl_widget" native="true">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>10</y>
+        <x>9</x>
+        <y>9</y>
         <width>711</width>
         <height>391</height>
        </rect>
@@ -164,6 +164,14 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>PlPlotWidget</class>
+   <extends>QWidget</extends>
+   <header>plplotwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections>
   <connection>

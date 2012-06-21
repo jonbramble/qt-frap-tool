@@ -11,6 +11,27 @@ FrapModel::~FrapModel()
     delete experiment;
 }
 
+void FrapModel::prepareLinearFit(){
+
+     QVector<double> time_s;
+     QVector<double> lambda_2;
+     QVector<double> lambda_err_2;
+
+     //could use transform?
+     for(results_iterator=results.begin();results_iterator<results.end();results_iterator++)
+     {
+         time_s.push_back( results_iterator->time_s);
+         lambda_2.push_back  (results_iterator->lambda_2);
+         lambda_err_2.push_back (results_iterator->lambda_err_2);
+     }
+
+     double m = (experiment->dif_const())*2;
+     double c = 0;
+
+     //size must change if elements are excluded
+     emit plotLinearFit(results.size(),time_s,lambda_2,lambda_err_2,m,c);
+}
+
 void FrapModel::setPrima(QString prima) {
     experiment->setprima(prima.toStdString());
 }
@@ -32,8 +53,6 @@ void FrapModel::doSelection(){
     double dif_const = experiment->dif_const();
     QString result = QString::number(dif_const,'g',3);
     emit update_result(result);
-
-    //qDebug() << QString("A %1").arg(results.front().A);
 
     QModelIndex topLeft= createIndex(0,0);
     QModelIndex bottomRight= createIndex(4,4);
@@ -58,7 +77,7 @@ void FrapModel::setImageList(QStringList image_string_list){
     return true;
 }*/
 
- int FrapModel::rowCount(const QModelIndex & parent) const
+ int FrapModel::rowCount(const QModelIndex & /*parent*/) const
  {
     return 5;      // change this
  }
