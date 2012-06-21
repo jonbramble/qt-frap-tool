@@ -43,6 +43,7 @@ void PlPlotWidget::plotLinearFit(int size, QVector<double> &xp,QVector<double> &
     int   i;
     double max_x, max_y;
 
+
     std::vector<double>::iterator result_min_x, result_max_x;
     std::vector<double>::iterator result_min_y, result_max_y;
 
@@ -59,6 +60,8 @@ void PlPlotWidget::plotLinearFit(int size, QVector<double> &xp,QVector<double> &
         y_err_hi[i]=yp[i]+yp_err[i];
         y_err_lo[i]=yp[i]-yp_err[i];
     }
+
+
 
     result_min_x = std::min_element(xp.toStdVector().begin(), xp.toStdVector().end());
     result_max_x = std::max_element(xp.toStdVector().begin(), xp.toStdVector().end());

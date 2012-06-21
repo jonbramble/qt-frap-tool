@@ -40,6 +40,10 @@ private:
     std::vector<FrapTool::result> results;
     std::vector<FrapTool::result>::iterator results_iterator;
 
+    QVector<double> *time_s;
+    QVector<double> *lambda_2;
+    QVector<double> *lambda_err_2;
+
     int rows;
     static std::string qStringToSTLString(const QString& qstring){ return qstring.toStdString(); };
 
