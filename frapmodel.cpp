@@ -4,34 +4,28 @@ FrapModel::FrapModel(QObject *parent) :
     QAbstractTableModel(parent)
 {
     experiment = new FrapTool::Frap();
-    //must I allocate these if I dont need them.
-    time_s = new QVector<double>;
-    lambda_2 = new QVector<double>;
-    lambda_err_2 = new QVector<double>;
 }
 
 FrapModel::~FrapModel()
 {
-    delete time_s;
-    delete lambda_2;
-    delete lambda_err_2;
     delete experiment;
 }
 
 void FrapModel::prepareLinearFit(){
-     //could use transform?
-     for(results_iterator=results.begin();results_iterator<results.end();results_iterator++)
-     {
-         time_s->push_back( results_iterator->time_s);
-         lambda_2->push_back  (results_iterator->lambda_2);
-         lambda_err_2->push_back (results_iterator->lambda_err_2);
-     }
+    unsigned int size = results.size();
 
-     double m = (experiment->dif_const())*2;
-     double c = 0;
+    time_s.reserve(size);
+    lambda_2.reserve(size);
+    lambda_err_2.reserve(size);
 
-     //size must change if elements are excluded
-     emit plotLinearFit(results.size(),*time_s,*lambda_2,*lambda_err_2,m,c);
+    std::transform(results.begin(),results.end(),std::back_inserter(time_s),&fill_time_array);
+    std::transform(results.begin(),results.end(),std::back_inserter(lambda_2),&fill_lambda_array);
+    std::transform(results.begin(),results.end(),std::back_inserter(lambda_err_2),&fill_lambda_err_array);
+
+    double m = experiment->get_m();
+    double c = experiment->get_c();
+
+    emit plotLinearFit(size,time_s,lambda_2,lambda_err_2,m,c);//size must change if elements are excluded
 }
 
 void FrapModel::setPrima(QString prima) {
@@ -55,6 +49,8 @@ void FrapModel::doSelection(){
     double dif_const = experiment->dif_const();
     QString result = QString::number(dif_const,'g',3);
     emit update_result(result);
+
+    prepareLinearFit();
 
     QModelIndex topLeft= createIndex(0,0);
     QModelIndex bottomRight= createIndex(4,4);

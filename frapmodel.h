@@ -26,7 +26,7 @@ public:
     
 signals:
     void update_result(QString diffusion);
-    void plotLinearFit(int size, QVector<double> &xp,QVector<double> &yp,QVector<double> &yp_err, double m, double c);
+    void plotLinearFit(int size, std::vector<double> &xp,std::vector<double> &yp,std::vector<double> &yp_err, double m, double c);
     
 public slots:
     void setPrima(QString prima);
@@ -38,14 +38,19 @@ public slots:
 private:
     FrapTool::Frap *experiment;
     std::vector<FrapTool::result> results;
-    std::vector<FrapTool::result>::iterator results_iterator;
+    //std::vector<FrapTool::result>::iterator results_iterator;
 
-    QVector<double> *time_s;
-    QVector<double> *lambda_2;
-    QVector<double> *lambda_err_2;
+    std::vector<double> time_s;
+    std::vector<double> lambda_2;
+    std::vector<double> lambda_err_2;
 
     int rows;
     static std::string qStringToSTLString(const QString& qstring){ return qstring.toStdString(); };
+    static double fill_time_array(const FrapTool::result& res){ return res.time_s; };
+    static double fill_lambda_array(const FrapTool::result& res){ return res.lambda_2; };
+    static double fill_lambda_err_array(const FrapTool::result& res){ return res.lambda_err_2; };
+
+
 
     
 };

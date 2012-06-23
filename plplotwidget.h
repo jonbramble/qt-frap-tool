@@ -17,8 +17,9 @@ public:
 signals:
     
 public slots:
-    void plotCurves();
-    void plotLinearFit(int size, QVector<double> &xp,QVector<double> &yp,QVector<double> &yp_err, double m, double c);
+    //void plotCurves();
+    void plotLinearFit(int size, std::vector<double> &xp,std::vector<double> &yp,std::vector<double> &yp_err, double m, double c);
+    void plotGaussianFit(int size, std::vector<double> &xp,std::vector<double> &yp,std::vector<double> &yp_fit);
 
 protected:
 

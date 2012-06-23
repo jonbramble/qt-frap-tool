@@ -33,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //connect(frapmodel,SIGNAL(dataChanged(QModelIndex,QModelIndex)), ui->tableView,SLOT(dataChanged(QModelIndex,QModelIndex)));
     connect(frapmodel,SIGNAL(update_result(QString)), this, SLOT(show_result(QString)));
 
-    connect(frapmodel,SIGNAL(plotLinearFit(int,QVector<double>&,QVector<double>&,QVector<double>&,double,double)), ui->pl_widget, SLOT(plotLinearFit(int,QVector<double>&,QVector<double>&,QVector<double>&,double,double)));
+    connect(frapmodel,SIGNAL(plotLinearFit(int,std::vector<double>&,std::vector<double>&,std::vector<double>&,double,double)), ui->pl_widget, SLOT(plotLinearFit(int,std::vector<double>&,std::vector<double>&,std::vector<double>&,double,double)));
 
     ui->tabWidget->setCurrentIndex(0);
     starting_dir = "/home/jon/Programming/C/frap-tool-old";
