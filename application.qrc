@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>chart_curve_go.png</file>
+        <file>image_add.png</file>
+        <file>images.png</file>
+        <file>control_play_blue.png</file>
+    </qresource>
+</RCC>
