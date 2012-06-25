@@ -13,15 +13,14 @@ PlPlotWidget::PlPlotWidget(QWidget *parent) :
     plinit();
 
     plot->setBackgroundColor(255,255,255,1);
-
     //resize( 400, 320 );
     pladv( 0 );
-    //unsigned int col = 255;
-    //plscolbg(col,col,col);
+    unsigned int col = 255;
+    plscolbg(col,col,col);
 }
 
 PlPlotWidget::~PlPlotWidget(){
-    qDebug() << "plplot destructor called";
+    //qDebug() << "plplot destructor called";
     PLINT cur_strm;
     plgstrm( &cur_strm );
     plsstrm( strm );
@@ -33,6 +32,7 @@ PlPlotWidget::~PlPlotWidget(){
 void PlPlotWidget::plotLinearFit(int size, std::vector<double> &xp,std::vector<double> &yp,std::vector<double> &yp_err, double m, double c){
 
     plot->clearWidget();
+    //plot->setBackgroundColor(255,255,255,1);
 
     int   i;
     double max_x, max_y;

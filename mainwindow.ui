@@ -45,8 +45,8 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>731</width>
-      <height>441</height>
+      <width>761</width>
+      <height>501</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -76,8 +76,8 @@
        <rect>
         <x>9</x>
         <y>9</y>
-        <width>711</width>
-        <height>391</height>
+        <width>741</width>
+        <height>451</height>
        </rect>
       </property>
      </widget>

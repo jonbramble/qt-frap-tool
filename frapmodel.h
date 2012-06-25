@@ -50,9 +50,6 @@ private:
     static double fill_lambda_array(const FrapTool::result& res){ return res.lambda_2; };
     static double fill_lambda_err_array(const FrapTool::result& res){ return res.lambda_err_2; };
 
-
-
-    
 };
 
 #endif // FRAPMODEL_H

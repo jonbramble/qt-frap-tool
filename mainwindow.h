@@ -48,7 +48,7 @@ private:
 
     FrapModel *frapmodel;
 
-    QString starting_dir;
+    QDir starting_dir;
 };
 
 #endif // MAINWINDOW_H
